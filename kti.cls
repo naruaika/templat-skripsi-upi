@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{kti}[2020/01/28 v1.0 Karya Tulis Ilmiah class]
+\ProvidesClass{kti}[2020/07/23 v1.1 Karya Tulis Ilmiah class]
 
 % ----------------------------------------
 % METADATA
@@ -8,6 +8,8 @@
 \gdef\@university{Universitas Pendidikan Indonesia}
 \gdef\@city{Bandung}
 \gdef\@degree{S-1}
+\newcommand{\email}[1]{\gdef\@email{#1}}
+\newcommand{\titleen}[1]{\gdef\@titleen{#1}}
 \newcommand{\faculty}[1]{\gdef\@faculty{#1}}
 \newcommand{\department}[1]{\gdef\@department{#1}}
 \newcommand{\program}[1]{\gdef\@program{#1}}
@@ -145,8 +147,7 @@
 \captionsetup[figure]{labelformat=simple,labelsep=space,
                       justification=centering}
 
-\usepackage{tocloft}
-\usepackage{etoolbox}
+\usepackage{tocloft,etoolbox}
 % ----------------------------------------
 % HEADING
 % ----------------------------------------
@@ -164,15 +165,8 @@
 % Mengubah gaya penulisan setiap judul subsubsubbab
 \titleformat*{\subsubsection}{\normalfont}
 
+% \usepackage{hyperref}
 \usepackage{apacite}
-% \usepackage[
-%   pdffitwindow=false,
-%   pdfview=FitH,
-%   pdfstartview=FitH,
-%   pagebackref=true,
-%   breaklinks=true,
-%   bookmarks=false,
-%   plainpages=false]{hyperref}
 \usepackage{url}
 % ----------------------------------------
 % CITING
@@ -190,7 +184,7 @@
 
 \usepackage[acronym]{glossaries}
 % ----------------------------------------
-% GLOSARIUM
+% Glosarium
 % ----------------------------------------
 \include{glosarium}
 
@@ -226,7 +220,7 @@
     \begin{singlespace}
       \textbf{\MakeUppercase{\@title}}\par\nobreak
       \vspace{1.5cm}
-      Skripsi\\
+      \MakeUppercase{Skripsi}\\
       \vspace{1.5cm}
       diajukan untuk memenuhi sebagian dari\\
       syarat memperoleh gelar Sarjana \@degree\\
@@ -240,7 +234,7 @@
       \vfill
       Oleh\\
       \@author\\
-      \@studentid\\
+      NIM \@studentid\\
       \vspace{1.5cm}
       \textbf{
         \MakeUppercase{\@program}\\
@@ -257,32 +251,59 @@
 }
 
 % ----------------------------------------
+% TEMPLAT HALAMAN HAK CIPTA
+% ----------------------------------------
+\def\copyright{
+  \begin{center}
+    \begin{singlespace}
+      \MakeUppercase{\@title}\par\nobreak
+      \vfill
+      Oleh\\
+      \@author\\
+      \@studentid\\
+      \vfill
+      Sebuah skripsi yang diajukan untuk memenuhi sebagian dari
+      syarat memperoleh gelar Sarjana \@degree\ \@program\ di \@faculty\\
+      \vfill
+      \textcopyright\ \@author\ \@yearsubmit\\
+      \@university\\
+      \@monthsubmit\ \@yearsubmit\\
+      \vfill
+      Hak Cipta Dilindungi Undang-Undang\\
+      Skripsi ini boleh diperbanyak seluruhnya atau sebagian, dengan dicetak ulang, difotokopi atau cara lainnya tanpa izin dari penulis dengan tetap mencantumkan halaman ini apa adanya
+    \end{singlespace}
+  \end{center}
+  \pagebreak
+}
+
+% ----------------------------------------
 % TEMPLAT HALAMAN PENGESAHAN
 % ----------------------------------------
 \def\approval{
   \begin{center}
     \begin{singlespace}
       \MakeUppercase{\@author}\\
-      \vspace{1.0cm}
+      \@studentid\\
+      \vfill
       \MakeUppercase{\@title}\\
-      \vspace{1.0cm}
+      \vfill
       disetujui dan disahkan oleh pembimbing:\\
-      \vspace{1.0cm}
-      Pembimbing I\\
+      \vfill
+      Pembimbing I,\\
       \vspace{2.0cm}
       \underline{\@firstsupervisorname}\\
-      NIP: \@firstsupervisorid\\
-      \vspace{1.0cm}
-      Pembimbing II\\
+      NIP. \@firstsupervisorid\\
+      \vfill
+      Pembimbing II,\\
       \vspace{2.0cm}
       \underline{\@secondsupervisorname}\\
-      NIP: \@secondsupervisorid\\
-      \vspace{1.0cm}
-      Mengetahui\\
+      NIP. \@secondsupervisorid\\
+      \vfill
+      Mengetahui,\\
       Ketua \@department\\
       \vspace{2.0cm}
       \underline{\@departmentheadname}\\
-      NIP: \@departmentheadid\\
+      NIP. \@departmentheadid\\
     \end{singlespace}
   \end{center}
   \addcontentsline{toc}{chapter}{HALAMAN PENGESAHAN}
@@ -339,39 +360,73 @@
 % TEMPLAT ABSTRAK
 % ----------------------------------------
 \def\abstract{
-  \chapter*{\abstractname}
-  \begin{singlespace}
-    \fontsize{11pt}{12pt}\textnormal{\noindent \@abstractcontent}\\
-    \textbf{Kata kunci:} \@abstractkeywords
-  \end{singlespace}
-  \addcontentsline{toc}{chapter}{\abstractname}
+  \begingroup
+    \begin{center}
+      \begin{singlespace}
+        \MakeUppercase{\@title}\\
+        \vspace{1.5cm}
+        Oleh\\
+        \@author\\
+        \@studentid
+      \end{singlespace}
+    \end{center}
+    \vspace{2.5cm}
+    \renewcommand{\cleardoublepage}{}
+    \renewcommand{\clearpage}{}
+    \chapter*{\abstractname}
+    \begin{singlespace}
+      \fontsize{11pt}{12pt}\textnormal{\noindent \@abstractcontent\\\\
+      Kata kunci: \@abstractkeywords}
+    \end{singlespace}
+    \addcontentsline{toc}{chapter}{\abstractname}
+  \endgroup
   \pagebreak
   \begingroup
     \selectlanguage{english}
+    \begin{center}
+      \begin{singlespace}
+        \textit{\MakeUppercase{\@titleen}}\\
+        \vspace{1.5cm}
+        \textit{Arranged by}\\
+        \textit{\@author}\\
+        \textit{\@studentid}
+      \end{singlespace}
+    \end{center}
+    \vspace{2.5cm}
+    \renewcommand{\cleardoublepage}{}
+    \renewcommand{\clearpage}{}
     \chapter*{\textit{\abstractname}}
     \begin{singlespace}
-      \fontsize{11pt}{12pt}\textit{\noindent \@abstractencontent}\\
-      \textit{\textbf{Keywords:} \@abstractenkeywords}
+      \fontsize{11pt}{12pt}\textit{\noindent \@abstractencontent\\\\
+      Keywords: \@abstractenkeywords}
     \end{singlespace}
   \endgroup
   \pagebreak
 }
 
 % Silakan muat paket-paket lain di sini
-\usepackage{amsmath}
-\usepackage{array}
+\usepackage{afterpage}
 \usepackage{blindtext}
-\usepackage{float}
-\usepackage{gensymb}
-\usepackage{mfirstuc}
-\usepackage{multirow}
+\usepackage{array}
 \usepackage{pdflscape}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{float}
 \usepackage{relsize}
+\usepackage{mfirstuc}
 \usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{color, colortbl}
+\usepackage{hhline}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 % ----------------------------------------
 % LAIN-LAIN
 % ----------------------------------------
 % Membuat variabel baru
 % untuk gaya penulisan tabel
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % left aligned table cell
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % left aligned table cell
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % center aligned table cell
+% \definecolor{gray}{gray}{0.9}

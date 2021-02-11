@@ -1,3 +1,13 @@
-\chapter{Simpulan}
+\chapter{Kesimpulan dan Saran}
+Setelah berhasil mengeksekusi semua skenario yang telah diusulkan, berikut ini beberapa kesimpulan yang dirangkum untuk menjawab permasalahan utama yang diangkat pada penelitian ini.
+\begin{enumerate}
+    \item Pemodelan pengenalan emosi menggunakan Log-\acrshort{gcns} melalui pendekatan \acrshort{frs} telah berhasil dirancang dan dieksekusi untuk set data wajah nonfrontal, FER-2013.
+    \item Dibuktikan bahwa arsitektur \acrshort{gcn}, sebagai hasil modifikasi dari arsitektur \textit{baseline}, baik dengan maupun tanpa \acrshort{frs} dapat meningkatkan performa model \textit{baseline}.
+    \item Dibuktikan bahwa modifikasi instruksi pada arsitektur \acrshort{gcns} melalui penggantian filter Gabor menjadi filter Log-Gabor dapat meningkatkan performa model.
+\end{enumerate}
 
-\dots
+Menurut pengamatan kami, metode yang diusulkan pada penelitian ini masih dapat dikembangkan lebih baik lagi dengan mengikuti beberapa saran berikut ini.
+\begin{enumerate}
+    \item Beberapa peluang peningkatan metode yang dapat diterapkan di antaranya adalah ---namun tidak terbatas pada--- 1) penggunaan teknik \textit{facial landmark detection} yang lebih andal untuk set data wajah nonfrontal, 2) penggunaan teknik \textit{image enhancement} yang andal terutama untuk data gambar wajah yang \textit{underbright} atau \textit{overbright}, 3) pemanfaatan teknik \textit{upsampling} terutama untuk data berlabel \textit{disgust}, dan 4) penggunaan teknik \textit{network architecture search} untuk menemukan konfigurasi \textit{hyperparameter} dan arsitektur jaringan yang lebih cocok untuk konteks pengenalan emosi menggunakan set data FER-2013.
+    \item Perbaikan algoritma dan praproses pada teknik \acrshort{frs}, terutama untuk area wajah bagian atas (dari mata hingga hidung). Sebab pengenalan emosi pada set data wajah dengan sebagian area yang tertutup sesuatu seperti masker akan cukup relevan diterapkan pada masa pandemi COVID-19 saat ini. Salah satu teknik yang dapat diadopsi adalah \textit{face frontalization}.
+\end{enumerate}

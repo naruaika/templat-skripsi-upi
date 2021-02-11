@@ -1,42 +1,72 @@
 \chapter{Pendahuluan}
+Pada bab ini disajikan latar belakang penelitian pengenalan emosi manusia meliputi jawaban atas pertanyaan-pertanyaan mengapa domain penelitian ini menarik dan penting untuk dilakukan, bagaimana peluang aplikasi dari hasil penelitian ini, bagaimana alur kerja pemodelan pengenalan emosi manusia, bagaimana pencapaian terkini dari penelitian terkait, bagaimana pendekatan yang diusulkan serta peluang keberhasilannya. Kemudian dipaparkan mengenai identifikasi masalah, rumusan masalah, tujuan penelitian, batasan penelitian dan manfaat penelitian yang relevan. Diakhiri dengan penjelasan struktur organisasi penulisan skripsi ini dari Bab I hingga Bab V dan bagian-bagian pelengkap lainnya.
 
 \section{Latar Belakang}
-Pengenalan emosi manusia sangat bermanfaat di sektor-sektor terkait \gls{komputasiafektif}\footnote{Komputasi afektif adalah studi multidisipliner pada pengembangan sistem yang mampu mengenali, memahami dan menghasilkan emosi manusia.}. Umpamanya di periklanan, pengenalan emosi dapat diterapkan berdasarkan hubungan berbanding lurus antara kualitas respons emosional masyarakat terhadap iklan dengan peningkatan penjualan \shortcite{sujata2018facial}. \dots
+Pengenalan emosi manusia sangat banyak manfaatnya, terutama pada sektor-sektor terkait \gls{komputasiafektif}\footnote{Komputasi afektif adalah studi multidisipliner pada pengembangan sistem yang mampu mengenali, memahami dan menghasilkan emosi manusia.}. Pada periklanan umpamanya, pengenalan emosi dapat diterapkan berdasarkan hubungan berbanding lurus antara kualitas respons emosional masyarakat terhadap iklan dengan peningkatan penjualan \shortcite{sujata2018facial}. Pada rekayasa perangkat lunak, pengenalan emosi dapat dimanfaatkan, baik untuk menilai efisiensi kerja dan kualitas kode tiap-tiap karyawan maupun untuk mengukur kepuasan pelanggan guna menggantikan penggunaan kuisoner yang menyesatkan \shortcite{kolakowska2013emotion,kolakowska2014emotion}. \shortciteA{beccue2018exsum} mengidentifikasi setidaknya terdapat tujuh peluang pasar dalam penggunaan teknologi ini yang tetap relevan hingga 2025 mendatang, yaitu untuk diterapkan pada layanan pelanggan, penelitian produk/pasar, pengalaman pelanggan, perawatan kesehatan, pendidikan, otomotif, dan gim.
+
+Pengenalan emosi memberikan kemampuan tiruan kepada sistem komputer untuk dapat menafsirkan bermacam-macam emosi manusia. Untuk mencapai tujuan tersebut, berbagai pendekatan komunikasi telah dilakukan, baik itu \gls{komunikasiverbal} maupun nonverbal\footnote{Komunikasi verbal melibatkan kata-kata, baik lisan maupun tulisan. Sebaliknya, komunikasi nonverbal melibatkan perilaku fisik (bahasa tubuh), meliputi ekspresi wajah, postur tubuh dan isyarat.} \shortcite{garcia2017emotion}. Sejauh ini, pengenalan emosi melalui ekspresi wajah diklaim paling akurat. Sebab ekspresi wajah, dalam kasus terbanyak, memiliki kontribusi terbesar dalam komunikasi \shortcite{mehrabian1967decoding,mehrabian1967inference,lapakko2007communication}. Disertai asumsi bahwa sejumlah ekspresi wajah manusia bersifat universal\footnote{Set emosi yang terdiri dari enam kelas emosi (\textit{six basic emotions}), yang dianggap universal oleh \shortciteA{ekman1970universal}, meliputi \textit{angry}, \textit{disgust}, \textit{fear}, \textit{happy}, \textit{sad}, dan \textit{surprise}.}, pengenalan emosi sangat mungkin dilakukan melalui proses analisis ekspresi wajah \shortcite{ekman1970universal}.
+
+Pengenalan ekspresi wajah termasuk kajian multidisipliner \shortcite{mandal2014understanding}, yang tidak hanya bersifat teoretis ---tentang bagaimana ekspresi wajah menyatakan emosi manusia---, melainkan juga bersifat teknis ---tentang bagaimana komputer dapat meniru kemampuan emosi manusia--- \shortcite{ekman1993facial,gendron2014perceptions,jack2012facial}. Atas kemajuan teknologi yang kian canggih, perbalahan teoretis tidak lagi kentara. Meskipun manusia belum mampu sepenuhnya untuk menjelaskan setiap aspek di dalamnya, akan tetapi \textit{machine learning} \shortcite{hebb1949organization} telah terbukti berhasil menyelesaikan masalah-masalah terkait rekognisi secara akurat. Tidak hanya dapat mengenali emosi manusia, teknologi rekognisi saat ini telah mampu mengenali emosi kucing \shortcite{evangelista2019facial} dan anjing \shortcite{amici2019ability}. Sehingga penggunaan \textit{machine learning} pada pengenalan ekspresi wajah mengetren dewasa ini.
+
+Hingga saat ini, keberhasilan teknologi rekognisi sangat bergantung kepada kuantitas dan kualitas set data yang digunakan. Set data ekspresi wajah yang sangat bervariasi, meliputi variasi karakteristik subjek ---seperti ras, etnis, jenis kelamin dan usia--- dan potret ---seperti kualitas gambar; rotasi, sudut dan jarak pengambilan--- merupakan sebuah tantangan besar bagi penelitian pengenalan ekspresi wajah. Untuk menyeragamkan distribusi probabilitas set data ekspresi wajah, pengambilan set data sering kali dilakukan pada kondisi lingkungan yang sudah diatur sedemikian rupa. Pengambilan dengan cara demikian mengacu kepada pemotretan ekspresi wajah menggunakan sisi depan wajah untuk menghasilkan set data wajah frontal \shortcite{lucey2010extended}. Melalui cara ini, penelitian mutakhir pada pengenalan ekspresi wajah frontal mampu mencapai akurasi sempurna pada data wajah frontal \shortcite{zhou2019facial}.-
+
+Terlepas dari banyaknya usaha dan mahalnya biaya yang harus diberikan untuk mengakuisisi set data wajah frontal, penggunaan set data frontal memiliki beberapa kerugian yang berarti. Dalam banyak skenario praktis, model rekognisi yang dilatih menggunakan set data wajah frontal menjadi tidak relevan untuk penerapan dalam kondisi liar. Sebab data input aplikasi diperoleh di bawah pengaturan lingkungan dan peralatan yang berbeda. Pada sebagian besar kasus, pengambilan potret wajah subjek tidak dilakukan dalam posisi yang sejajar dengan sensor kamera. Contohnya pada aplikasi pendeteksi emosi pengemudi kendaraan bermotor, sensor kamera diletakkan pada sudut rendah \shortcite{assari2011driver}. Sementara pada aplikasi pendeteksi emosi studen di kelas nyata, sensor kamera ditempatkan pada sudut tinggi \shortcite{jing2020feature}. Untuk alasan yang sama, pengembangan model akan menjadi sulit dilakukan melalui prosedur penambahan set data wajah frontal dari sumber yang berbeda \shortcite{yan2018cross}. Oleh karena itu, penelitian pengenalan ekspresi wajah nonfrontal menjadi urgen untuk dilaksanakan.
+
+Pengembangan model pengenalan ekspresi wajah nonfrontal hingga saat ini belum mencapai kepuasan berarti. Melalui peningkatan kompleksitas arsitektur \textit{\acrlong{cnn}} (\acrshort{cnn}) \shortcite{lecun1989generalization} serta pemanfaatan ekstraksi fitur tradisional, model \textit{state-of-the-art} terkini hanya mampu mencapai akurasi sebesar 75,42\% \shortcite{georgescu2019local}. Melalui pengurangan tingkat variasi set data \textit{learning}, kinerja model pun dapat ditingkatkan. Misalnya melalui teknik \textit{face frontalization} yang baru-baru ini dikembangkan, di mana set data wajah nonfrontal dibangkitkan dari set data wajah frontal \shortcite{lai2018emotion}. Akan tetapi teknik-teknik ini memerlukan komputasi yang relatif mahal.
+
+Dengan mengetahui bahwa ekspresi wajah manusia terbentuk dari lebih dari sepuluh ribu kombinasi gerakan relatif lima belas otot bagian wajah \shortcite{ekman1997face,ekman2004emotions,westbrook2019anatomy}, di mana gerakan-gerakan tersebut menyebabkan perubahan bentuk-bentuk yang kasat mata pada kulit wajah, penerapan ekstraksi fitur tekstur gambar menjadi sangat relevan. Filter Gabor, yang mana juga dianggap mirip dengan sistem visual beberapa mamalia \shortcite{sivalingamaiah2012texture}, telah terbukti sangat cocok untuk kasus-kasus yang memerlukan proses analisis tekstur \shortcite{vijay2019highly,mohammed2019handwritten}. Dengan sifatnya yang kuat terhadap perubahan rotasi, distorsi dan variasi iluminasi pada sinyal gambar \shortcite{sisodia2013human}, filter ini telah dimanfaatkan oleh banyak penelitian terdahulu pada pengenalan ekspresi wajah \shortcite{lyons1998coding,islam2018frssvm,qin2020facial}.
+
+Pada penelitian ini, diajukan sebuah pendekatan baru pada set data wajah nonfrontal, di mana daerah-daerah wajah disegmentasikan secara otomatis menggunakan algoritma tertentu untuk mempersempit \textit{\acrlong{roi}} (\acrshort{roi}) sebelum pada akhirnya dilatih menggunakan \textit{\acrlong{gcns}} (\acrshort{gcns}) \shortcite{luan2018gabor}. \acrshort{gcns} merupakan \acrshort{cnn} yang dimasuki oleh filter Gabor \shortcite{gabor1946theory}, yang mana filter ini dapat meningkatkan kemampuan \acrshort{cnn} dalam mengekstraksi informasi tekstur terhadap perubahan orientasi dan skala. Tiap-tiap bagian wajah ini dilatih secara individu dan kemudian dihitung berdasarkan nilai akurasi per bagian untuk mendapatkan nilai akurasi akhir. Sementara itu, dilakukan eksperimen modifikasi terhadap \acrshort{gcns}, yaitu dengan menggantikan filter Gabor menjadi log-Gabor \shortcite{field1987relations}. Gagasan ini muncul setelah pembuktian bahwa filter log-Gabor lebih unggul daripada filter Gabor untuk tekstur yang kompleks \shortcite{nava2011comparison}. %Juga sebagai upaya mengurangi kompleksitas komputasi transformasi akibat adanya redudansi parameter yang dimiliki filter Gabor \shortcite{vyas2006automated,kugaevskikh2017comparison}.
 
 \section{Identifikasi Masalah}
-Dari latar belakang di atas, kami mengidentifikasi beberapa permasalahan spesifik yang diangkat di penelitian ini sebagai berikut.
+Dari latar belakang di atas, penulis mengidentifikasi beberapa permasalahan spesifik yang diangkat di penelitian ini sebagai berikut.
 \begin{enumerate}
-    \item Rancangan pemodelan pengenalan emosi melalui ekspresi wajah menggunakan \acrshort{gcn} melalui pendekatan \emph{facial region segmentation}.
-    \item \dots
+    \item Rancangan pemodelan pengenalan emosi melalui ekspresi wajah menggunakan \textit{\acrlong{gcns}} (\acrshort{gcns}) melalui pendekatan \textit{facial region segmentation} (\acrshort{frs}).
+    \item Analisis kinerja model menggunakan \acrshort{gcns} dengan dan tanpa melalui pendekatan \acrshort{frs}.
+    \item Analisis kinerja sebelum dan sesudah modifikasi instruksi pada \acrshort{gcns} melalui penggantian filter Gabor menjadi log-Gabor.
 \end{enumerate}
 
 \section{Rumusan Masalah}
-Untuk memperjelas permasalahan yang akan diteliti, maka kami merumuskan permasalahan tersebut sebagai berikut.
+Untuk memperjelas permasalahan yang akan diteliti maka penulis merumuskan permasalahan tersebut sebagai berikut.
 \begin{enumerate}
-    \item Bagaimana rancangan pemodelan pengenalan emosi melalui ekspresi wajah menggunakan \acrshort{gcn} melalui pendekatan \emph{facial region segmentation}?
-    \item \dots
+    \item Bagaimana rancangan pemodelan pengenalan emosi melalui ekspresi wajah menggunakan \acrshort{gcns} melalui pendekatan \acrshort{frs}?
+    \item Bagaimana analisis kinerja model menggunakan \acrshort{gcns} dengan dan tanpa melalui pendekatan \acrshort{frs}?
+    \item Bagaimana analisis kinerja sebelum dan sesudah modifikasi instruksi pada \acrshort{gcns} melalui penggantian filter Gabor menjadi log-Gabor?
 \end{enumerate}
 
 \section{Tujuan Penelitian}
 Berdasarkan rumusan di atas, tujuan yang hendak dicapai dari penelitian ini terangkum ke dalam poin-poin berikut ini.
 \begin{enumerate}
-    \item Merancangan pemodelan pengenalan emosi melalui ekspresi wajah menggunakan \acrshort{gcn} melalui pendekatan \emph{facial region segmentation}.
-    \item \dots
+    \item Menemukan rancangan pemodelan pengenalan emosi melalui ekspresi wajah menggunakan \acrshort{gcns} melalui pendekatan \acrshort{frs} yang optimal.
+    \item Mengevaluasi analisis kinerja model menggunakan \acrshort{gcns} dengan dan tanpa melalui pendekatan \acrshort{frs}.
+    \item Mengevaluasi analisis kinerja sebelum dan sesudah modifikasi instruksi pada \acrshort{gcns} melalui penggantian filter Gabor menjadi log-Gabor.
 \end{enumerate}
 
 \section{Batasan Penelitian}
 Agar penelitian dapat dilaksanakan sesuai dengan bidang fokus permasalahan yang telah ditentukan, maka berikut ini adalah batasan penelitian ini.
 \begin{enumerate}
     \item Diasumsikan bahwa ekspresi wajah adalah representasi paling akurat dari emosi manusia.
-    \item \dots
+    \item Diasumsikan bahwa ekspresi wajah adalah universal untuk tujuh kelas emosi berbeda, yaitu \textit{angry}, \textit{disgust}, \textit{fear}, \textit{happy}, \textit{sad}, \textit{surprise}, dan \textit{neutral}.
+    \item Digunakan set data berupa gambar-gambar \acrlong{2d} (\acrshort{2d}) dari pose wajah manusia, bukan berupa video atau gambar-gambar sekuensial terhadap waktu dari perubahan tampilan wajah manusia.
 \end{enumerate}
 
 \section{Manfaat Penelitian}
-Hasil dari eksperimen ini diharapkan dapat memberikan manfaat-manfaat berikut ini.
+Hasil analisis dari eksperimen ini diharapkan dapat memberikan manfaat-manfaat sebagai berikut.
 \begin{enumerate}
-    \item Memberikan pengetahuan dan pengalaman pertama bagi kami di penelitian pengenalan emosi otomatis melalui ekspresi wajah.
-    \item \dots
+    \item Memberikan pengetahuan dan pengalaman pertama bagi penulis di penelitian pengenalan emosi otomatis melalui ekspresi wajah.
+    \item Memberikan kontribusi kepada masyarakat di penelitian pengenalan ekspresi wajah.
+    \item Memberikan dorongan kepada industri dalam pemanfaatan pengenalan ekspresi wajah sebagai salah satu usaha mencapai tujuan bisnis mereka.
 \end{enumerate}
 
 \section{Struktur Organisasi Skripsi}
-Struktur organisasi skripsi berisi perincian tentang urutan skripsi yang terorganisasi ke dalam lima bab, mulai dari bab I hingga bab V. \dots
+Struktur organisasi skripsi berisi perincian tentang urutan skripsi yang terorganisasi ke dalam lima bab, mulai dari Bab I hingga Bab V. Bab I memuat uraian tentang pendahuluan dan merupakan bab awal skripsi yang secara terurut memuat latar belakang penelitian, identifikasi masalah penelitian, rumusan masalah penelitian, tujuan penelitian, batasan masalah, manfaat penelitian, dan struktur organisasi skripsi. Bab I ini berperan besar dalam pengembangan bab-bab selanjutnya pada skripsi ini.
+
+Bab II memuat kajian pustaka dari sumber-sumber kredibel yang membahas mengenai sejumlah teori, konsep dan gagasan terhadap studi kasus yang diangkat dari berbagai penelitian sebelumnya yang relevan dengan penelitian ini. Diawali dengan pembahasan mengenai studi pengenalan emosi dan kaitannya dengan ekspresi wajah. Dilanjutkan dengan pembahasan penelitian terkait yang menjadi baseline bagi penelitian ini. Dan diakhiri dengan pembahasan landasan teori seperti filter Gabor, filter log-Gabor \acrshort{gcns} dan \acrshort{frs}. Kajian pustaka ini memiliki peran yang sangat penting sebagai landasan teoritik dalam penyusunan rumusan masalah, tujuan serta hipotesis penelitian.
+
+Bab III berisi penjabaran terperinci mengenai metode penelitian sebagai landasan ilmiah penelitian ini. Diuraikan secara komprehensif mengenai prosedur penelitian yang meliputi data sampel penelitian, desain, metode dan rancangan penelitian, instrumen penelitian serta teknik analisis data.
+
+Bab IV menguraikan implementasi metodologi dan analisis hasil penelitian berikut pembahasannya dalam bentuk deskripsi naratif. Termasuk di dalamnya pembahasan mengenai perbandingan antara metodologi yang dikembangkan dengan penelitian sebelumnya. Data hasil penelitian ditampilkan dalam bentuk tabel dan grafik statistik serta alternatif bentuk relevan lainnya. Pembahasan keputusan yang diambil dan hasil eksperimen pada penelitian ini terhadap penelitian terkait juga ikut disertakan pada bab ini.
+
+Bab V merupakan bab terakhir dalam skripsi ini yang menyajikan kesimpulan dari penafsiran dan pemaknaan subjektif peneliti serta saran perbaikan terhadap hasil analisis temuan penelitian. Terdapat dua alternatif cara penyajian kesimpulan, yaitu dengan cara menyajikannya dalam bentuk butiran atau uraian padat.
+
+Selain memuat sejumlah bab inti yang telah disebutkan di atas, skripsi ini dilengkapi dengan daftar pustaka sebagai sumber rujukan bagi pembaca budiman dengan sumber-sumber relevan dan kredibel sesuai dengan kriteria penulis. %Di bagian akhir dilampirkan dokumentasi terkait seluruh proses dan hasil penelitian.
